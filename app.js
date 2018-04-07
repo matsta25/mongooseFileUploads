@@ -20,6 +20,8 @@ app.set('view engine','ejs');
 
 
 //mongo URI
+
+// YES I KNOW (☞ﾟ∀ﾟ)☞
 const mongoURI = 'mongodb://mateusz:mateusz@ds137019.mlab.com:37019/mongouploads';
 
 //create mongo connection
