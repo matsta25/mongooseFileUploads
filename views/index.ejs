@@ -5,13 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mongo File Uploads</title>
+    <link rel="stylesheet" type="text/css" href="/public/css/semantic.min.css">
 </head>
 <body>
     <h1>Mongo File Uploads</h1>
     <form action="/upload" method="post" enctype="multipart/form-data">
         <label for="file">Choose file</label>
         <input type="file" name="file" id="file">
+        <input type="submit" value="Submit">
     </form>
-    <input type="submit" value="Submit">
+    <hr>
+    <% if(files){ %>
+        <% files.forEach(function(file) { %>
+            <div>
+                <% if(file.isImage){ %> 
+                    <img src="image/<%= file.filename %>" alt="">    
+                    <% } else { %>
+                        <%= file.filename %>               
+                        <% } %>
+                        <form action="/files/<%= file._id %>?_method=DELETE" method="POST">
+                            <div class="ui inverted segment">
+                                <button class="ui inverted red button">DELETE</button>
+                            </div>
+                        </form>               
+                    </div>
+                    <% }) %>
+                    <% }else{ %>
+                        <p>No files to show.</p>
+                        <% } %>
+                        <script src="/public/libs/jquery.min.js"></script>
+    
+                        <script src="/public/libs/semantic.min.js"></script>
 </body>
 </html>
